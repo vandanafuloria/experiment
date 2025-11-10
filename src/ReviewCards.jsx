@@ -1,5 +1,32 @@
-import React, { useState } from 'react';
-import { Droplet, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Droplet, ShieldCheck, Sparkles, Star, Disc3 } from 'lucide-react';
+import image3 from './assets/image (3).png';
+import image4 from './assets/image (4).png';
+import image5 from './assets/image (5).png';
+import image6 from './assets/image (6).png';
+import geminiImage1 from './assets/Gemini_Generated_Image_zip9qzip9qzip9qz.png';
+import geminiImage2 from './assets/Gemini_Generated_Image_yvbadlyvbadlyvba.png';
+import sampleAudioLocal from './assets/cascade-breathe-future-garage-412839.mp3';
+import productVideo1 from './assets/3402764-uhd_2160_4096_25fps.mp4';
+import productVideo2 from './assets/3403280-hd_1080_1920_25fps.mp4';
+import productVideo3 from './assets/3403283-uhd_2160_4096_25fps.mp4';
+import productVideo4 from './assets/4008365-uhd_2160_4096_25fps.mp4';
+import productVideo5 from './assets/8141585-uhd_2160_4096_25fps.mp4';
+import productVideo6 from './assets/854082-hd_1920_1080_25fps.mp4';
+import storeImage1 from './assets/store.png';
+import storeImage2 from './assets/store2.png';
+import storeImage3 from './assets/store3.png';
+import storeImage4 from './assets/store5.png';
+import waImage1155000 from './assets/WhatsApp Image 2025-11-10 at 11.50.00 AM.jpeg';
+import waImage1155000Alt from './assets/WhatsApp Image 2025-11-10 at 11.50.00 AM (1).jpeg';
+import waImage1155001 from './assets/WhatsApp Image 2025-11-10 at 11.50.01 AM.jpeg';
+import waImage1155053 from './assets/WhatsApp Image 2025-11-10 at 11.50.53 AM.jpeg';
+import waImage1155053Alt from './assets/WhatsApp Image 2025-11-10 at 11.50.53 AM (1).jpeg';
+import waImage1155054 from './assets/WhatsApp Image 2025-11-10 at 11.50.54 AM.jpeg';
+import waImage1155054Alt from './assets/WhatsApp Image 2025-11-10 at 11.50.54 AM (1).jpeg';
+import waImage1155054Alt2 from './assets/WhatsApp Image 2025-11-10 at 11.50.54 AM (2).jpeg';
+import waImage1155055 from './assets/WhatsApp Image 2025-11-10 at 11.50.55 AM.jpeg';
+import waImage1155055Alt from './assets/WhatsApp Image 2025-11-10 at 11.50.55 AM (1).jpeg';
 
 const ReviewCards = ({
     rating = 4.8,
@@ -10,7 +37,11 @@ const ReviewCards = ({
 }) => {
     const [activeTab, setActiveTab] = useState('product');
     const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedMedia, setSelectedMedia] = useState(null);
+    const [selectedAudio, setSelectedAudio] = useState(null);
+    const [selectedStore, setSelectedStore] = useState(null);
     const [filterBy, setFilterBy] = useState('recent');
+    const [mediaSourceFilter, setMediaSourceFilter] = useState('all');
     
     const percent = (count) => Math.round((count / totalReviews) * 100);
     const placeholderImages = [
@@ -25,11 +56,312 @@ const ReviewCards = ({
         "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=200&h=200&fit=crop",
         "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=200&h=200&fit=crop"
     ];
+
+    const mediaItems = useMemo(() => ([
+        {
+            id: 'insta-1',
+            src: image3,
+            source: 'instagram',
+            sourceLabel: 'Instagram',
+            handle: '@baboski.glow',
+            uploadedAt: 'Nov 8, 2024',
+            description: '“Weekend rituals with Blue Freesia. Velvet finish, instant hydration.”',
+            tags: ['#BlueFreesia', '#BaboskiGlow'],
+            link: 'https://instagram.com/baboski.glow'
+        },
+        {
+            id: 'insta-2',
+            src: image4,
+            source: 'instagram',
+            sourceLabel: 'Instagram',
+            handle: '@freesia.fanclub',
+            uploadedAt: 'Nov 4, 2024',
+            description: 'Before/after story shared via DM—hands look visibly smoother.',
+            tags: ['#TextureTuesday', '#HandCare'],
+            link: 'https://instagram.com/freesia.fanclub'
+        },
+        {
+            id: 'wa-1',
+            src: image5,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'VIP Customer Circle',
+            uploadedAt: 'Nov 2, 2024',
+            description: 'Customer testimonial from our WhatsApp community drop.',
+            tags: ['#CustomerLove']
+        },
+        {
+            id: 'wa-2',
+            src: image6,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Retail Partner Group',
+            uploadedAt: 'Oct 31, 2024',
+            description: 'Shelf display shared by a retail partner—limited edition set.',
+            tags: ['#RetailSpotlight', '#BaboskiInstores']
+        },
+        {
+            id: 'insta-3',
+            src: geminiImage1,
+            source: 'instagram',
+            sourceLabel: 'Instagram',
+            handle: '@beautybytes.in',
+            uploadedAt: 'Oct 28, 2024',
+            description: 'UGC reel cover featuring the hand cream in golden hour lighting.',
+            tags: ['#GlowShot', '#UGC'],
+            link: 'https://instagram.com/beautybytes.in'
+        },
+        {
+            id: 'wa-3',
+            src: geminiImage2,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Community Broadcast',
+            uploadedAt: 'Oct 25, 2024',
+            description: 'Shared during the festive flash sale—customers stacking up bundles.',
+            tags: ['#FestiveEdit', '#WhatsAppDrops']
+        },
+        {
+            id: 'wa-4',
+            src: waImage1155000,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Customer DM',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Textured shot of the new hand cream duo straight from a WhatsApp DM.',
+            tags: ['#RealRoutine', '#BaboskiGlow']
+        },
+        {
+            id: 'wa-5',
+            src: waImage1155000Alt,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Community Drop',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Close-up shared in the Baboski WhatsApp insiders group.',
+            tags: ['#CustomerLove']
+        },
+        {
+            id: 'wa-6',
+            src: waImage1155001,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'VIP Customer',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Lifestyle snap showing the cream on a vanity setup.',
+            tags: ['#WhatsAppDrops']
+        },
+        {
+            id: 'wa-7',
+            src: waImage1155053,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Retail Feedback',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Retail partner showcased the new display rack via WhatsApp.',
+            tags: ['#RetailSpotlight']
+        },
+        {
+            id: 'wa-8',
+            src: waImage1155053Alt,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Retail Feedback',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Alternate angle of the same retail display from the partner channel.',
+            tags: ['#RetailSpotlight']
+        },
+        {
+            id: 'wa-9',
+            src: waImage1155054,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Launch Broadcast',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Festive hamper tease sent during the WhatsApp launch broadcast.',
+            tags: ['#FestiveEdit']
+        },
+        {
+            id: 'wa-10',
+            src: waImage1155054Alt,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Launch Broadcast',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Zoomed-in detail of the hamper packaging courtesy of a WhatsApp reply.',
+            tags: ['#WhatsAppSneakPeek']
+        },
+        {
+            id: 'wa-11',
+            src: waImage1155054Alt2,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Launch Broadcast',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Another angle showing the product texture under natural light.',
+            tags: ['#TextureTuesday']
+        },
+        {
+            id: 'wa-12',
+            src: waImage1155055,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Team Share',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Team member shared the behind-the-scenes prep via WhatsApp.',
+            tags: ['#BTS', '#TeamBaboski']
+        },
+        {
+            id: 'wa-13',
+            src: waImage1155055Alt,
+            source: 'whatsapp',
+            sourceLabel: 'WhatsApp',
+            handle: 'Team Share',
+            uploadedAt: 'Nov 10, 2025',
+            description: 'Additional behind-the-scenes snap captured during the drop.',
+            tags: ['#BTS', '#BaboskiGlow']
+        }
+    ]), []);
+
+    const shuffledMediaItems = useMemo(
+        () => [...mediaItems].sort(() => Math.random() - 0.5),
+        [mediaItems]
+    );
+
+    const audioItems = useMemo(() => ([
+        {
+            id: 'audio-1',
+            title: 'Cascade Breathe Session',
+            platform: 'WhatsApp Voice Drop',
+            mood: 'Calming story',
+            uploadedAt: 'Nov 10, 2025',
+            duration: '0:32',
+            src: sampleAudioLocal,
+            link: 'https://open.spotify.com/track/placeholder'
+        },
+        {
+            id: 'audio-2',
+            title: 'Customer Gratitude Note',
+            platform: 'Instagram DM',
+            mood: 'Happy customer',
+            uploadedAt: 'Nov 6, 2025',
+            duration: '0:24',
+            src: 'https://cdn.pixabay.com/download/audio/2022/10/26/audio_0e3fb4bdb7.mp3?filename=highlander-121112.mp3',
+            link: 'https://instagram.com/baboski.glow'
+        }
+    ]), []);
+
+    const videoItems = useMemo(() => ([
+        {
+            id: 'video-1',
+            title: 'Shelf Styling Walkthrough',
+            platform: 'Instagram Reels',
+            uploadedAt: 'Nov 9, 2025',
+            src: productVideo2,
+            link: 'https://instagram.com/reel/shelf-styling'
+        },
+        {
+            id: 'video-2',
+            title: 'Hand Cream Texture Closeup',
+            platform: 'WhatsApp Broadcast',
+            uploadedAt: 'Nov 8, 2025',
+            src: productVideo4,
+            link: 'https://baboski.com/texture'
+        },
+        {
+            id: 'video-3',
+            title: 'Skincare Routine Clip',
+            platform: 'Instagram Stories',
+            uploadedAt: 'Nov 6, 2025',
+            src: productVideo3,
+            link: 'https://instagram.com/stories/baboski'
+        },
+        {
+            id: 'video-4',
+            title: 'Shelf Reset Timelapse',
+            platform: 'Retail Partner Drop',
+            uploadedAt: 'Nov 4, 2025',
+            src: productVideo5,
+            link: 'https://baboski.com/retail'
+        },
+        {
+            id: 'video-5',
+            title: 'Glow Bar BTS',
+            platform: 'Community WhatsApp',
+            uploadedAt: 'Nov 2, 2025',
+            src: productVideo1,
+            link: 'https://baboski.com/community'
+        },
+        {
+            id: 'video-6',
+            title: 'Product Flatlay Reel',
+            platform: 'Instagram Reels',
+            uploadedAt: 'Oct 31, 2025',
+            src: productVideo6,
+            link: 'https://instagram.com/reel/flatlay'
+        }
+    ]), []);
+
+    const storeItems = useMemo(() => ([
+        {
+            id: 'store-1',
+            name: 'Baboski Flagship – Mumbai',
+            address: 'Bandra West, Linking Road 101',
+            hours: '10:00 AM – 9:00 PM',
+            image: storeImage1,
+            phone: '+91 22 4000 1001'
+        },
+        {
+            id: 'store-2',
+            name: 'Baboski Experience Hub – Delhi',
+            address: 'Khan Market, Block F 23',
+            hours: '11:00 AM – 8:30 PM',
+            image: storeImage2,
+            phone: '+91 11 4200 2202'
+        },
+        {
+            id: 'store-3',
+            name: 'Baboski Studio – Bengaluru',
+            address: 'Indiranagar, 100 Feet Road 55',
+            hours: '10:30 AM – 9:30 PM',
+            image: storeImage3,
+            phone: '+91 80 4500 3303'
+        },
+        {
+            id: 'store-4',
+            name: 'Baboski Collective – Hyderabad',
+            address: 'Jubilee Hills Road No. 36',
+            hours: '11:00 AM – 9:00 PM',
+            image: storeImage4,
+            phone: '+91 40 4400 4404'
+        }
+    ]), []);
+
+    const mediaFilters = [
+        { value: 'all', label: 'All Media' },
+        { value: 'instagram', label: 'Instagram' },
+        { value: 'whatsapp', label: 'WhatsApp' }
+    ];
     const palette = {
         star: starColor,
         barDark: accentColor,
         border: '#E5E7EB'
     };
+
+    const isMediaTab = activeTab === 'media';
+    const isAudioTab = activeTab === 'audio';
+    const isVideoTab = activeTab === 'video';
+    const isStoreTab = activeTab === 'store';
+    const isReviewTab = activeTab === 'product' || activeTab === 'brand';
+    const filteredMedia = shuffledMediaItems.filter((item) => {
+        if (mediaSourceFilter === 'all') {
+            return true;
+        }
+        return item.source === mediaSourceFilter;
+    });
+    const filteredAudio = audioItems;
+    const filteredVideo = videoItems;
+    const filteredStores = storeItems;
 
     const productReviews = [
         {
@@ -254,7 +586,9 @@ const ReviewCards = ({
         },
     ];
 
-    const currentReviews = filterReviews(activeTab === 'product' ? productReviews : brandReviews);
+    const currentReviews = isReviewTab
+        ? filterReviews(activeTab === 'product' ? productReviews : brandReviews)
+        : [];
 
     return (
         <section className="mt-8 sm:mt-10 md:mt-12">
@@ -345,7 +679,7 @@ const ReviewCards = ({
                 {/* Right Side - Reviews */}
                 <div className="lg:col-span-2">
                     {/* Tab Headers - Outside the container */}
-                    <div className="flex mb-6 bg-gray-100 rounded-lg p-1 gap-1 max-w-md">
+                    <div className="flex flex-wrap mb-6 bg-gray-100 rounded-lg p-1 gap-1">
                         <button 
                             className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
                                 activeTab === 'product' 
@@ -372,11 +706,236 @@ const ReviewCards = ({
                         >
                             Brand Reviews
                         </button>
+                        <button 
+                            className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
+                                activeTab === 'media' 
+                                ? 'bg-white shadow-sm text-gray-900' 
+                                : 'hover:text-gray-900'
+                            }`}
+                            style={{
+                                color: activeTab === 'media' ? undefined : starColor
+                            }}
+                            onClick={() => setActiveTab('media')}
+                        >
+                            Media
+                        </button>
+                        <button 
+                            className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
+                                activeTab === 'video' 
+                                ? 'bg-white shadow-sm text-gray-900' 
+                                : 'hover:text-gray-900'
+                            }`}
+                            style={{
+                                color: activeTab === 'video' ? undefined : starColor
+                            }}
+                            onClick={() => setActiveTab('video')}
+                        >
+                            Video
+                        </button>
+                        <button 
+                            className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
+                                activeTab === 'audio' 
+                                ? 'bg-white shadow-sm text-gray-900' 
+                                : 'hover:text-gray-900'
+                            }`}
+                            style={{
+                                color: activeTab === 'audio' ? undefined : starColor
+                            }}
+                            onClick={() => setActiveTab('audio')}
+                        >
+                            Audio
+                        </button>
+                        <button 
+                            className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
+                                activeTab === 'store' 
+                                ? 'bg-white shadow-sm text-gray-900' 
+                                : 'hover:text-gray-900'
+                            }`}
+                            style={{
+                                color: activeTab === 'store' ? undefined : starColor
+                            }}
+                            onClick={() => setActiveTab('store')}
+                        >
+                            Our Stores
+                        </button>
                     </div>
 
                     {/* Reviews Container */}
                     <div>
+                        {isMediaTab ? (
+                            <div className="space-y-6">
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                                    <div>
+                                        <h3 className="text-lg font-semibold text-gray-900">Community Media Wall</h3>
+                                        <p className="text-sm text-gray-500">Highlights sourced from Instagram & WhatsApp conversations.</p>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        {mediaFilters.map((filter) => (
+                                            <button
+                                                key={filter.value}
+                                                onClick={() => setMediaSourceFilter(filter.value)}
+                                                className={`px-3 py-2 text-xs sm:text-sm rounded-lg border transition-colors ${
+                                                    mediaSourceFilter === filter.value
+                                                        ? 'bg-gray-900 text-white border-gray-900'
+                                                        : 'bg-white text-gray-600 hover:border-gray-300 border-gray-200'
+                                                }`}
+                                            >
+                                                {filter.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
 
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                    {filteredMedia.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            onClick={() => setSelectedMedia(item)}
+                                            className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg text-left"
+                                        >
+                                            <div className="relative aspect-square overflow-hidden bg-gray-50">
+                                                <img
+                                                    src={item.src}
+                                                    alt={`${item.sourceLabel} feature`}
+                                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 to-black/0 p-3">
+                                                    <div className="flex items-center justify-between text-xs text-white/80 uppercase tracking-wide">
+                                                        <span>{item.sourceLabel}</span>
+                                                        <span>{item.uploadedAt}</span>
+                                                    </div>
+                                                    <div className="mt-1 text-sm font-semibold text-white">
+                                                        {item.source === 'instagram' && item.link ? (
+                                                            <a
+                                                                href={item.link}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="underline decoration-white/40 underline-offset-2 hover:text-white/90"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            >
+                                                                {item.handle} ↗
+                                                            </a>
+                                                        ) : (
+                                                            <span>{item.handle}</span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                    {filteredMedia.length === 0 && (
+                                        <div className="col-span-full border-2 border-dashed border-gray-200 rounded-xl p-10 text-center text-sm text-gray-500">
+                                            No media uploads under this channel yet. Use the buttons above once you add new Instagram or WhatsApp assets.
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ) : isVideoTab ? (
+                            <div className="space-y-6">
+                                <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-gray-900">Video Highlights</h3>
+                                    <p className="text-sm text-gray-500 mt-1">Short-form clips shared across Instagram and WhatsApp.</p>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {filteredVideo.map((item) => (
+                                        <div
+                                            key={item.id}
+                                            className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
+                                        >
+                                            <div className="relative overflow-hidden" style={{ aspectRatio: '9 / 16' }}>
+                                                <video
+                                                    src={item.src}
+                                                    controls
+                                                    playsInline
+                                                    muted
+                                                    className="h-full w-full object-cover"
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 to-black/0 p-3">
+                                                    <div className="text-xs uppercase tracking-wide text-white/70">{item.platform}</div>
+                                                    <div className="mt-1 text-sm font-semibold text-white">{item.title}</div>
+                                                    <div className="text-xs text-white/60 mt-1">{item.uploadedAt}</div>
+                                                    {item.link && (
+                                                        <a
+                                                            href={item.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="mt-2 inline-flex text-[11px] font-medium text-white/80 underline underline-offset-4 hover:text-white"
+                                                        >
+                                                            View Source ↗
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : isAudioTab ? (
+                            <div className="space-y-6">
+                                <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-gray-900">Audio Clips</h3>
+                                    <p className="text-sm text-gray-500 mt-1">Voicenotes and sonic snippets sourced from the community.</p>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {filteredAudio.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            onClick={() => setSelectedAudio(item)}
+                                            className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
+                                        >
+                                            <div className="h-48 w-full bg-linear-to-br from-gray-900 via-gray-800 to-gray-700 flex flex-col items-center justify-center text-white gap-3">
+                                                <span className="inline-flex items-center justify-center rounded-full bg-white/15 text-white p-4 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                                                    <Disc3 size={28} />
+                                                </span>
+                                                <div className="text-sm font-semibold">{item.title}</div>
+                                                <div className="text-xs text-white/70">{item.platform} • {item.duration}</div>
+                                                <div className="text-xs uppercase tracking-wide text-white/60">{item.mood}</div>
+                                            </div>
+                                            <div className="absolute inset-x-0 top-0 flex justify-end p-3">
+                                                <span className="rounded-full bg-white text-gray-900 text-xs font-semibold px-2 py-1 shadow-md">
+                                                    {item.uploadedAt}
+                                                </span>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : isStoreTab ? (
+                            <div className="space-y-6">
+                                <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-gray-900">Visit Our Stores</h3>
+                                    <p className="text-sm text-gray-500 mt-1">Experience Baboski in person across our flagship and experience hubs.</p>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    {filteredStores.map((store) => (
+                                        <button
+                                            key={store.id}
+                                            onClick={() => setSelectedStore(store)}
+                                            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
+                                        >
+                                            <div className="relative h-56">
+                                                <img
+                                                    src={store.image}
+                                                    alt={store.name}
+                                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                                                <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
+                                                    <div className="text-sm uppercase tracking-wide text-white/80">Baboski Store</div>
+                                                    <div className="text-lg font-semibold">{store.name}</div>
+                                                </div>
+                                            </div>
+                                            <div className="p-5 space-y-2">
+                                                <div className="text-sm text-gray-600">{store.address}</div>
+                                                <div className="text-xs uppercase tracking-wide text-gray-400">{store.hours}</div>
+                                                <div className="text-sm font-medium text-gray-800">{store.phone}</div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <>
             {/* Review Count and Filter Controls */}
             <div className="flex items-center justify-between mb-6">
                 <div className="text-sm text-gray-600">
@@ -456,12 +1015,12 @@ const ReviewCards = ({
                         <div className="flex items-center justify-between mt-2 sm:mt-3">
                             {/* Images */}
                             {rev.images && rev.images.length > 0 ? (
-                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible max-w-full pr-1 -mr-1 scroll-smooth *:snap-start sm:*:snap-none">
                                     {rev.images.map((src, i) => (
                                         <button
                                             key={i}
                                             onClick={() => setSelectedImage({ src, review: rev, index: i })}
-                                            className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-none border border-gray-200 shadow-sm opacity-90 hover:opacity-100 hover:scale-[1.02] transition cursor-pointer"
+                                            className="w-12 h-12 sm:w-12 sm:h-12 rounded-none border border-gray-200 shadow-sm opacity-90 hover:opacity-100 hover:scale-[1.02] transition cursor-pointer shrink-0 bg-white"
                                         >
                                             <img
                                                 src={src}
@@ -473,7 +1032,7 @@ const ReviewCards = ({
                                     ))}
                                 </div>
                             ) : (
-                                <div></div>
+                                <div />
                             )}
 
                             {/* Action Buttons */}
@@ -489,8 +1048,10 @@ const ReviewCards = ({
                     </div>
                 ))}
             </div>
+                            </>
+                        )}
 
-            {/* Image Modal */}
+                        {/* Review Image Modal */}
             {selectedImage && (
                 <div
                     className="fixed inset-0 backdrop-blur-[1px] flex justify-center items-center z-50 p-6"
@@ -565,6 +1126,161 @@ const ReviewCards = ({
                     </div>
                 </div>
             )}
+
+                        {/* Media Modal */}
+                        {selectedMedia && (
+                            <div
+                                className="fixed inset-0 backdrop-blur-[1px] flex justify-center items-center z-50 p-6"
+                                style={{
+                                    background: `linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(165, 130, 150, 0.1) 100%)`
+                                }}
+                                onClick={() => setSelectedMedia(null)}
+                            >
+                                <div
+                                    className="bg-white rounded-2xl max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <button
+                                        className="absolute top-4 right-4 w-8 h-8 bg-gray-800 bg-opacity-80 text-white rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all z-10 shadow-lg"
+                                        onClick={() => setSelectedMedia(null)}
+                                    >
+                                        ×
+                                    </button>
+                                    <div className="bg-gray-50 flex items-center justify-center p-6">
+                                        <img
+                                            src={selectedMedia.src}
+                                            alt={`${selectedMedia.sourceLabel} feature`}
+                                            className="max-h-[420px] w-full object-contain rounded-xl shadow-md"
+                                        />
+                    </div>
+                                    <div className="p-8 flex flex-col gap-4">
+                                        <div className="flex items-center gap-3">
+                                            <span
+                                                className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${
+                                                    selectedMedia.source === 'instagram'
+                                                        ? 'bg-pink-100 text-pink-700'
+                                                        : 'bg-emerald-100 text-emerald-700'
+                                                }`}
+                                            >
+                                                {selectedMedia.sourceLabel}
+                                            </span>
+                                            <span className="text-sm text-gray-500">{selectedMedia.uploadedAt}</span>
+                                        </div>
+                                        <div className="text-base font-semibold text-gray-900">{selectedMedia.handle}</div>
+                                        {selectedMedia.source === 'instagram' && selectedMedia.link && (
+                                            <a
+                                                href={selectedMedia.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center text-sm font-medium text-pink-600 hover:text-pink-700"
+                                            >
+                                                View on Instagram ↗
+                                            </a>
+                                        )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+                        {/* Audio Modal */}
+                        {selectedAudio && (
+                            <div
+                                className="fixed inset-0 backdrop-blur-[1px] flex justify-center items-center z-50 p-6"
+                                style={{
+                                    background: `linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(165, 130, 150, 0.1) 100%)`
+                                }}
+                                onClick={() => setSelectedAudio(null)}
+                            >
+                                <div
+                                    className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <button
+                                        className="absolute top-4 right-4 w-8 h-8 bg-gray-800 bg-opacity-80 text-white rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all z-10 shadow-lg"
+                                        onClick={() => setSelectedAudio(null)}
+                                    >
+                                        ×
+                                    </button>
+                                    <div className="grid grid-cols-1 md:grid-cols-2">
+                                        <div className="flex items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-gray-700 p-10">
+                                            <div className="flex flex-col items-center gap-4 text-white">
+                                                <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/15 text-white shadow-xl">
+                                                    <Disc3 size={36} />
+                                                </span>
+                                                <div className="text-xs uppercase tracking-wide text-white/60">{selectedAudio.platform}</div>
+                                                <div className="text-lg font-semibold text-white text-center">{selectedAudio.title}</div>
+                                                <div className="text-xs text-white/60">{selectedAudio.uploadedAt} • {selectedAudio.duration}</div>
+                                            </div>
+                                        </div>
+                                        <div className="p-8 flex flex-col gap-4">
+                                            <div className="text-sm font-semibold text-gray-900">Listen</div>
+                                            <audio controls className="w-full">
+                                                <source src={selectedAudio.src} type="audio/mpeg" />
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                            {selectedAudio.link && (
+                                                <a
+                                                    href={selectedAudio.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 hover:text-pink-700"
+                                                >
+                                                    Open full track ↗
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Store Modal */}
+                        {selectedStore && (
+                            <div
+                                className="fixed inset-0 backdrop-blur-[1px] flex justify-center items-center z-50 p-6"
+                                style={{
+                                    background: `linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(165, 130, 150, 0.1) 100%)`
+                                }}
+                                onClick={() => setSelectedStore(null)}
+                            >
+                                <div
+                                    className="bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <button
+                                        className="absolute top-4 right-4 w-8 h-8 bg-gray-800 bg-opacity-80 text-white rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all z-10 shadow-lg"
+                                        onClick={() => setSelectedStore(null)}
+                                    >
+                                        ×
+                                    </button>
+                                    <div className="grid grid-cols-1 md:grid-cols-2">
+                                        <div className="h-full">
+                                            <img
+                                                src={selectedStore.image}
+                                                alt={selectedStore.name}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="p-8 space-y-4">
+                                            <div>
+                                                <div className="text-xs uppercase tracking-wide text-gray-400">Baboski Store</div>
+                                                <div className="text-xl font-semibold text-gray-900 mt-1">{selectedStore.name}</div>
+                                            </div>
+                                            <div className="space-y-2 text-sm text-gray-600">
+                                                <div>{selectedStore.address}</div>
+                                                <div className="font-medium text-gray-800">{selectedStore.phone}</div>
+                                                <div className="text-xs uppercase tracking-wide text-gray-400">Hours</div>
+                                                <div>{selectedStore.hours}</div>
+                                            </div>
+                                            <div className="text-xs text-gray-400 uppercase tracking-wide">Book an appointment</div>
+                                            <button className="px-4 py-2 text-sm font-medium rounded-lg border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
+                                                Schedule Visit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
