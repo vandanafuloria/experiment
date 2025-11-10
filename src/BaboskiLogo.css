@@ -1,0 +1,85 @@
+/* BaboskiLogo.css */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@200;4000;900&display=swap');
+
+.baboski-logo {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.baboski-text {
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* Size variations */
+.baboski-logo.small {
+  font-size: 18px;
+}
+
+.baboski-logo.medium {
+  font-size: 32px;
+}
+
+.baboski-logo.large {
+  font-size: 48px;
+}
+
+.baboski-logo.xlarge {
+  font-size: 64px;
+}
+
+/* Color variations */
+.baboski-logo.dark .baboski-text {
+  color: #2c2c2c;
+}
+
+.baboski-logo.light .baboski-text {
+  color: #ffffff;
+}
+
+.baboski-logo.brand .baboski-text {
+  color: #a58296;
+}
+
+/* Hover effect */
+.baboski-logo:hover .baboski-text {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Optional decorative underline */
+.baboski-logo.underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #a58296 0%, #8e6d82 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.baboski-logo.underline:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Modern minimalist style matching the brand */
+.baboski-logo.minimal {
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.baboski-logo.minimal .baboski-text {
+  background: linear-gradient(135deg, #a58296 0%, #8e6d82 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
