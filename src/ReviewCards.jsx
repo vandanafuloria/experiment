@@ -17,6 +17,16 @@ import storeImage1 from './assets/store.png';
 import storeImage2 from './assets/store2.png';
 import storeImage3 from './assets/store3.png';
 import storeImage4 from './assets/store5.png';
+import storeVisit1 from './assets/Screenshot 2025-11-10 at 3.18.39 PM.png';
+import storeVisit2 from './assets/Screenshot 2025-11-10 at 3.18.46 PM.png';
+import storeVisit3 from './assets/Screenshot 2025-11-10 at 3.18.56 PM.png';
+import storeVisit4 from './assets/Screenshot 2025-11-10 at 3.19.03 PM.png';
+import storeVisit5 from './assets/Screenshot 2025-11-10 at 3.19.24 PM.png';
+import storeVisit6 from './assets/Screenshot 2025-11-10 at 3.19.29 PM.png';
+import storeVisit7 from './assets/Screenshot 2025-11-10 at 3.19.38 PM.png';
+import storeVisit8 from './assets/Screenshot 2025-11-10 at 3.19.44 PM.png';
+import storeVisit9 from './assets/Screenshot 2025-11-10 at 3.19.51 PM.png';
+import storeVisit10 from './assets/Screenshot 2025-11-10 at 3.19.57 PM.png';
 import waImage1155000 from './assets/WhatsApp Image 2025-11-10 at 11.50.00 AM.jpeg';
 import waImage1155000Alt from './assets/WhatsApp Image 2025-11-10 at 11.50.00 AM (1).jpeg';
 import waImage1155001 from './assets/WhatsApp Image 2025-11-10 at 11.50.01 AM.jpeg';
@@ -40,6 +50,7 @@ const ReviewCards = ({
     const [selectedMedia, setSelectedMedia] = useState(null);
     const [selectedAudio, setSelectedAudio] = useState(null);
     const [selectedStore, setSelectedStore] = useState(null);
+    const [storeView, setStoreView] = useState('store-visit');
     const [filterBy, setFilterBy] = useState('recent');
     const [mediaSourceFilter, setMediaSourceFilter] = useState('all');
     
@@ -302,7 +313,7 @@ const ReviewCards = ({
         }
     ]), []);
 
-    const storeItems = useMemo(() => ([
+    const storeLocations = useMemo(() => ([
         {
             id: 'store-1',
             name: 'Baboski Flagship – Mumbai',
@@ -360,8 +371,76 @@ const ReviewCards = ({
         return item.source === mediaSourceFilter;
     });
     const filteredAudio = audioItems;
+    const storeVisits = useMemo(() => ([
+        {
+            id: 'visit-1',
+            image: storeVisit1,
+            caption: 'Customer feedback at Address One Dehradun',
+            badge: '@unhuofficial'
+        },
+        {
+            id: 'visit-2',
+            image: storeVisit2,
+            caption: 'Festive look haul from our jewellery bar',
+            badge: '@amitaroy_official'
+        },
+        {
+            id: 'visit-3',
+            image: storeVisit3,
+            caption: 'Client reviews live from the studio',
+            badge: '@amitaroy_official'
+        },
+        {
+            id: 'visit-4',
+            image: storeVisit4,
+            caption: 'Gen Z squad at Inhanss pop-up',
+            badge: '@thelostsoul_211'
+        },
+        {
+            id: 'visit-5',
+            image: storeVisit5,
+            caption: 'Local entrepreneurs spotlighted by Unhu',
+            badge: '#UnhuStartupEmporium'
+        },
+        {
+            id: 'visit-6',
+            image: storeVisit6,
+            caption: 'Matching jewellery styling session',
+            badge: '@inhanss'
+        },
+        {
+            id: 'visit-7',
+            image: storeVisit7,
+            caption: 'Happy customer at the crystal jewels wall',
+            badge: 'Inhanss Studio'
+        },
+        {
+            id: 'visit-8',
+            image: storeVisit8,
+            caption: 'Handmade crystal haul from Address One',
+            badge: '@unhuofficial'
+        },
+        {
+            id: 'visit-9',
+            image: storeVisit9,
+            caption: 'Weekend shoppers discovering new brands',
+            badge: '#ClientReviews'
+        },
+        {
+            id: 'visit-10',
+            image: storeVisit10,
+            caption: 'Why women keep coming back to Inhanss',
+            badge: '@ashmitakohli'
+        }
+    ]), []);
+
     const filteredVideo = videoItems;
-    const filteredStores = storeItems;
+    const filteredStores = storeLocations;
+    const filteredStoreVisits = storeVisits;
+    const storeTabOptions = [
+        { value: 'in-store', label: 'In Store' },
+        { value: 'store-visit', label: 'Store Visit' }
+    ];
 
     const productReviews = [
         {
@@ -754,7 +833,10 @@ const ReviewCards = ({
                             style={{
                                 color: activeTab === 'store' ? undefined : starColor
                             }}
-                            onClick={() => setActiveTab('store')}
+                            onClick={() => {
+                                setActiveTab('store');
+                                setStoreView('store-visit');
+                            }}
                         >
                             Our Stores
                         </button>
@@ -903,36 +985,81 @@ const ReviewCards = ({
                         ) : isStoreTab ? (
                             <div className="space-y-6">
                                 <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-                                    <h3 className="text-lg font-semibold text-gray-900">Visit Our Stores</h3>
-                                    <p className="text-sm text-gray-500 mt-1">Experience Baboski in person across our flagship and experience hubs.</p>
+                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-900">Visit Our Stores</h3>
+                                            <p className="text-sm text-gray-500 mt-1">Experience Baboski in person or see what guests are sharing from their visits.</p>
+                                        </div>
+                                        <div className="flex gap-2 bg-gray-100 rounded-lg p-1">
+                                            {storeTabOptions.map((tab) => (
+                                                <button
+                                                    key={tab.value}
+                                                    onClick={() => {
+                                                        setStoreView(tab.value);
+                                                        if (tab.value !== 'in-store') {
+                                                            setSelectedStore(null);
+                                                        }
+                                                    }}
+                                                    className={`px-3 py-2 text-xs sm:text-sm rounded-md transition-all ${
+                                                        storeView === tab.value ? 'bg-white shadow-sm text-gray-900' : 'hover:text-gray-900 text-gray-600'
+                                                    }`}
+                                                >
+                                                    {tab.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                    {filteredStores.map((store) => (
-                                        <button
-                                            key={store.id}
-                                            onClick={() => setSelectedStore(store)}
-                                            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
-                                        >
-                                            <div className="relative h-56">
-                                                <img
-                                                    src={store.image}
-                                                    alt={store.name}
-                                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                                />
-                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-                                                <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
-                                                    <div className="text-sm uppercase tracking-wide text-white/80">Baboski Store</div>
-                                                    <div className="text-lg font-semibold">{store.name}</div>
+                                {storeView === 'in-store' ? (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                        {filteredStores.map((store) => (
+                                            <button
+                                                key={store.id}
+                                                onClick={() => setSelectedStore(store)}
+                                                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
+                                            >
+                                                <div className="relative h-56">
+                                                    <img
+                                                        src={store.image}
+                                                        alt={store.name}
+                                                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                                                    <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
+                                                        <div className="text-sm uppercase tracking-wide text-white/80">Baboski Store</div>
+                                                        <div className="text-lg font-semibold">{store.name}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="p-5 space-y-2">
+                                                    <div className="text-sm text-gray-600">{store.address}</div>
+                                                    <div className="text-xs uppercase tracking-wide text-gray-400">{store.hours}</div>
+                                                    <div className="text-sm font-medium text-gray-800">{store.phone}</div>
+                                                </div>
+                                            </button>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        {filteredStoreVisits.map((shot) => (
+                                            <div
+                                                key={shot.id}
+                                                className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
+                                            >
+                                                <div className="aspect-3/4 overflow-hidden">
+                                                    <img
+                                                        src={shot.image}
+                                                        alt={shot.caption}
+                                                        className="h-full w-full object-cover"
+                                                    />
+                                                </div>
+                                                <div className="p-4 space-y-2">
+                                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-[11px] font-medium text-gray-600 uppercase tracking-wide">{shot.badge}</span>
+                                                    <p className="text-sm text-gray-700 leading-relaxed">{shot.caption}</p>
                                                 </div>
                                             </div>
-                                            <div className="p-5 space-y-2">
-                                                <div className="text-sm text-gray-600">{store.address}</div>
-                                                <div className="text-xs uppercase tracking-wide text-gray-400">{store.hours}</div>
-                                                <div className="text-sm font-medium text-gray-800">{store.phone}</div>
-                                            </div>
-                                        </button>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <>
